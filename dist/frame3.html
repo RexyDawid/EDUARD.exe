@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Unbekannt</title>
+<style>
+html, body {
+    margin: 0;
+    background: black;
+    height: 100%;
+    overflow: hidden;
+    font-family: monospace;
+}
+
+video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: black;
+}
+
+#msg {
+    display: none;
+    position: absolute;
+    inset: 0;
+    color: #ff2a2a;
+    font-size: 32px;
+    letter-spacing: 2px;
+    text-align: center;
+    padding-top: 40vh;
+    animation: glitch 0.15s infinite;
+}
+
+@keyframes glitch {
+    0% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(2px, -1px); }
+    60% { transform: translate(-1px, 1px); }
+    80% { transform: translate(1px, -2px); }
+    100% { transform: translate(0); }
+}
+</style>
+</head>
+
+<body>
+<video id="vid" autoplay>
+    <source src="Unbekannt.mp4" type="video/mp4">
+</video>
+
+<div id="msg">
+    FASSE MICH NIE WIEDER AN<br>
+    SONST WIRST DU ES SEHEN
+</div>
+
+<script>
+const v = document.getElementById("vid");
+const msg = document.getElementById("msg");
+
+// 2:12 = 132 Sekunden
+v.addEventListener("timeupdate", () => {
+    if (v.currentTime >= 132) {
+        v.pause();
+        v.style.display = "none";
+        msg.style.display = "block";
+    }
+});
+</script>
+</body>
+</html>
